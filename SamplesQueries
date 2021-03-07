@@ -1,0 +1,156 @@
+SELECT CustomerName, City FROM Customers;
+
+=====================
+
+SELECT CustomerName, City FROM Customers;
+
+=====================
+
+SELECT * FROM Customers ORDER BY Country;
+
+=====================
+
+INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
+
+=====================
+
+UPDATE Customers
+SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
+WHERE CustomerID = 1;
+
+=====================
+
+DELETE FROM Customers WHERE CustomerName='Alfreds Futterkiste';
+
+=====================
+
+SELECT 
+        CustomerID, CustomerName, ContactName, 
+        Address, City ,Postalcode, Country
+FROM 
+        Customers 
+WHERE 
+        Country=‘Mexico’ 
+AND 
+        Customerid > 10 ;
+
+
+SELECT CONCAT('A', 'B');
+
+=====================
+
+SELECT GETDATE();
+
+=====================
+
+SELECT CONVERT(varchar, getdate(), 3)
+
+=====================
+
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+
+=====================
+
+SELECT O.OrderID, C.CustomerName
+FROM Orders AS O 
+INNER JOIN Customers AS C ON O.CustomerID = C.CustomerID;
+
+=====================
+
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+LEFT JOIN Orders
+ON Customers.CustomerID = Orders.CustomerID;
+
+=====================
+
+SELECT Orders.OrderID, Employees.LastName, Employees.FirstName
+FROM Orders
+RIGHT JOIN Employees
+ON Orders.EmployeeID = Employees.EmployeeID;
+
+=====================
+
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+CROSS JOIN Customers ;
+
+=====================
+
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID;
+
+=====================
+
+SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City
+FROM Customers A, Customers B
+WHERE A.CustomerID <> B.CustomerID
+AND A.City = B.City;
+
+=====================
+
+SELECT SUM(Quantity)
+FROM Order_Details;
+
+=====================
+
+SELECT AVG(Price)
+FROM Products;
+
+=====================
+
+SELECT MIN(Price) AS SmallestPrice
+FROM Products;
+
+=====================
+
+SELECT MAX(Price) AS LargestPrice
+FROM Products;
+
+=====================
+
+SELECT COUNT(ProductID)
+FROM Products;
+
+=====================
+
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country;
+
+=====================
+
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
+HAVING COUNT(CustomerID) > 5;
+
+=====================
+
+CREATE VIEW CustomerOrders
+AS
+SELECT TOP 100 PERCENT
+C.CustomerID, CustomerName, Country, OrderID, OrderDate
+FROM
+dbo.customers as C
+JOIN
+dbo.orders as O
+on c.CustomerID = O.CustomerID
+
+=====================
+
+Select * from CustomerOrders
+
+
+
+
+
+
+
+
+
+
